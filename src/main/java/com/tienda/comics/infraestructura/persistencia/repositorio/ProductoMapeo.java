@@ -2,13 +2,12 @@ package com.tienda.comics.infraestructura.persistencia.repositorio;
 
 
 import com.tienda.comics.dominio.modelo.DtoProducto;
-import com.tienda.comics.infraestructura.jdbc.MapperResult;
 import org.springframework.jdbc.core.RowMapper;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class ProductoMapeo implements RowMapper<DtoProducto>, MapperResult {
+public class ProductoMapeo implements RowMapper<DtoProducto> {
 
     @Override
     public DtoProducto mapRow(ResultSet resultSet, int rowNum) throws SQLException {
