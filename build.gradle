@@ -31,11 +31,13 @@ dependencies {
 	runtimeOnly 'com.h2database:h2'
 	runtimeOnly 'mysql:mysql-connector-java'
 	annotationProcessor 'org.projectlombok:lombok'
-	testImplementation('org.springframework.boot:spring-boot-starter-test') {
-		exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
-	}
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	implementation 'commons-io:commons-io:2.6'
 	implementation 'org.apache.commons:commons-lang3:3.7'
+
+	testImplementation 'junit:junit:4.12'
+	testImplementation 'org.mockito:mockito-all:1.10.19'
+	testImplementation 'com.h2database:h2:1.4.194'
 }
 
 test {
