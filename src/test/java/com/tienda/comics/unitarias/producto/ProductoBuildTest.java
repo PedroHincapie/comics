@@ -9,7 +9,7 @@ import org.junit.Test;
 import org.mockito.InjectMocks;
 import org.mockito.MockitoAnnotations;
 
-public class ProductoServicioTest {
+public class ProductoBuildTest {
 
     @InjectMocks
     private ServicioRestarCantidadProducto servicioRestarCantidadProducto;
