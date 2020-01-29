@@ -36,14 +36,6 @@ public class Producto {
         return codigo;
     }
 
-    public String getNombre() {
-        return nombre;
-    }
-
-    public double getPrecio() {
-        return precio;
-    }
-
     public Long getCantidad() {
         return cantidad;
     }

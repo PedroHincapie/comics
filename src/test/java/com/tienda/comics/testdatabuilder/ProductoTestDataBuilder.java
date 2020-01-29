@@ -21,9 +21,27 @@ public class ProductoTestDataBuilder {
         this.cantidad = CANTIDAD_PRODUCTO;
     }
 
+    public ProductoTestDataBuilder conCodigo(String codigo) {
+        this.codigo = codigo;
+        return this;
+    }
+
+    public ProductoTestDataBuilder conNombre(String nombre) {
+        this.nombre = nombre;
+        return this;
+    }
+
+    public ProductoTestDataBuilder conCantidad(Long cantidad) {
+        this.cantidad = cantidad;
+        return this;
+    }
+
+    public ProductoTestDataBuilder conPrecio(double precio) {
+        this.precio = precio;
+        return this;
+    }
+
     public Producto build() {
         return new Producto(this.codigo, this.nombre, this.precio, this.cantidad);
     }
-
-
 }

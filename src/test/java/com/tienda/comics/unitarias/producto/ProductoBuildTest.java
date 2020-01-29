@@ -1,7 +1,7 @@
 package com.tienda.comics.unitarias.producto;
 
-import com.tienda.comics.dominio.Producto;
-import com.tienda.comics.dominio.excepcion.ExcepcionNoHayCantidadProductos;
+import com.tienda.comics.dominio.excepcion.ExcepcionValorInvalido;
+import com.tienda.comics.dominio.excepcion.ExcepcionValorObligatorio;
 import com.tienda.comics.dominio.servicio.ServicioRestarCantidadProducto;
 import com.tienda.comics.testdatabuilder.ProductoTestDataBuilder;
 import org.junit.Before;
@@ -20,13 +20,27 @@ public class ProductoBuildTest {
     }
 
 
-    @Test(expected = ExcepcionNoHayCantidadProductos.class)
-    public void validarUnidadesAntesVenta() {
-        // arrange
-        Producto producto = new ProductoTestDataBuilder().build();
-        Long cantidadBaseProducto = Long.valueOf(50);
-
+    @Test(expected = ExcepcionValorObligatorio.class)
+    public void validarObligatoriedadCamposNombre() {
         // act - assert
-        servicioRestarCantidadProducto.ejecutar(producto, cantidadBaseProducto);
+        new ProductoTestDataBuilder().conNombre(null).build();
+    }
+
+    @Test(expected = ExcepcionValorObligatorio.class)
+    public void validarCantidadMayorACeroCampoCantidad() {
+        // act - assert
+        new ProductoTestDataBuilder().conCantidad(null).build();
+    }
+
+    @Test(expected = ExcepcionValorInvalido.class)
+    public void validarCantidadMenorACeroCampoCantidad() {
+        // act - assert
+        new ProductoTestDataBuilder().conCantidad(Long.valueOf(0)).build();
+    }
+
+    @Test(expected = ExcepcionValorInvalido.class)
+    public void validarCantidadNegativaEnCampoCantidad() {
+        // act - assert
+        new ProductoTestDataBuilder().conCantidad(Long.valueOf(0)).build();
     }
 }
