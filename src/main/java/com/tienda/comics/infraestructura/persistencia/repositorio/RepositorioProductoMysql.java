@@ -8,6 +8,8 @@ import com.tienda.comics.infraestructura.jdbc.sqlstatement.SqlStatement;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 @Repository
 public class RepositorioProductoMysql implements RepositorioProducto {
 
@@ -18,6 +20,9 @@ public class RepositorioProductoMysql implements RepositorioProducto {
 
     @SqlStatement(namespace = "producto", value = "consultarPorCodigo")
     private static String sqlConsultaPorCodigo;
+
+    @SqlStatement(namespace = "producto", value = "listar")
+    private static String sqlListarProductos;
 
     @SqlStatement(namespace = "producto", value = "crear")
     private static String sqlCrear;
@@ -37,6 +42,12 @@ public class RepositorioProductoMysql implements RepositorioProducto {
         MapSqlParameterSource paramSource = new MapSqlParameterSource();
         paramSource.addValue(CAMPO_CODIGO, codigo);
         return this.customNamedParameterJdbcTemplate.consultarUnicoResultado(sqlConsultaPorCodigo, paramSource, new ProductoMapeo()).orElse(null);
+    }
+
+    @Override
+    public List<DtoProducto> listar() {
+        return this.customNamedParameterJdbcTemplate.getNamedParameterJdbcTemplate()
+                .query(sqlListarProductos, new ProductoMapeo());
     }
 
     @Override
